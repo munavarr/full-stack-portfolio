@@ -22,7 +22,7 @@ export async function generateMetadata({
     return { title: "Skills" };
   }
 
-  return {
+  return {  
     title: `${category.heading} skills — Munavark`,
     description: category.description,
   };
@@ -44,7 +44,7 @@ export default async function SkillPage({
     <div className={pageStyles.page}>
       <header className={pageStyles.header}>
         <Link className={pageStyles.wordmark} href="/" aria-label="Munavark home">
-          munavark<span>.</span>
+          {/* munavark<span>.</span> */}
         </Link>
         <nav className={pageStyles.nav} aria-label="Main navigation">
           <Link href="/#work">Work</Link>
@@ -56,11 +56,11 @@ export default async function SkillPage({
         <section className={styles.hero} aria-labelledby="skill-title">
           <Link className={styles.back} href="/">
             <ArrowLeft aria-hidden="true" />
-            Back home
+            home
           </Link>
-          <p className={styles.eyebrow}>{category.heading}</p>
-          <h1 id="skill-title">{category.title}</h1>
-          <p className={styles.description}>{category.description}</p>
+          {/* <p className={styles.eyebrow}>{category.heading}</p> */}
+          {/* <h1 id="skill-title">{category.title}</h1> */}
+          {/* <p className={styles.description}>{category.description}</p> */}
         </section>
         {category.type === "backend" && category.groups ? (
           category.groups.map((group) => (

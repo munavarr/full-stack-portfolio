@@ -42,7 +42,8 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  --font-sans: Arial, Helvetica, sans-serif;
+  --font-sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
@@ -134,8 +135,10 @@ a {
   text-decoration: none;
 }
 
-.typingLine { min-height: 2.5rem; margin: 1.9rem 0 0; color: #155e4a; font-family: var(--font-mono); font-size: clamp(1.2rem, 2.25vw, 2rem); letter-spacing: -0.045em; line-height: 1.25; }
+.typingLine { min-height: 2.5rem; margin: 1.9rem 0 0; color: #262a29; font-family: var(--font-sans); font-size: clamp(1.2rem, 2.25vw, 2rem); font-weight: 550; letter-spacing: -0.035em; line-height: 1.25; }
+.typingLine2 { min-height: 2.5rem; margin: 1.9rem 0 0; color: #893543; font-family: var(--font-display); font-size: clamp(1.2rem, 2.25vw, 2rem); font-weight: 500; font-style: italic; letter-spacing: -0.035em; line-height: 1.25; }
 .caret { display: inline-block; width: 0.1em; height: 0.95em; margin-left: 0.15em; vertical-align: -0.08em; background: currentColor; animation: blink 900ms step-end infinite; }
+.caretDone { animation: none; opacity: 1; }
 @keyframes blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
 

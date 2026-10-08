@@ -52,7 +52,7 @@ export default function SkillCards() {
   return (
     <section className={styles.section} id="work">
       <div className={styles.heading}>
-        <span className={styles.eyebrow}>TECHNICAL EXPERTISE</span>
+        {/* <span className={styles.eyebrow}>TECHNICAL EXPERTISE</span> */}
 
         <h2>
           Built across <span>the stack.</span>

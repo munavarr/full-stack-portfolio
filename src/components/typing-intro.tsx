@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const roles = ["Front-end developer", "Back-end builder", "Full-stack problem solver"];
+const intro = "I design thoughtful interfaces and build the systems behind them.";
 
 export function TypingIntro() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -35,5 +36,44 @@ export function TypingIntro() {
     return () => window.clearTimeout(timeout);
   }, [isDeleting, reduceMotion, role, text]);
 
-  return <motion.p className="typingLine" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.45 }} aria-label={role}><span aria-hidden="true">{displayedText}</span><span className="caret" aria-hidden="true" /></motion.p>;
+  return (
+    <motion.p
+      className="typingLine"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.25, duration: 0.45 }}
+      aria-label={role}
+    >
+      <span aria-hidden="true">{displayedText}</span>
+      <span className="caret" aria-hidden="true" />
+    </motion.p>
+  );
+}
+
+export function DesignIntro() {
+  const [text, setText] = useState("");
+  const reduceMotion = useReducedMotion();
+  const displayedText = reduceMotion ? intro : text;
+  const isComplete = displayedText === intro;
+
+  useEffect(() => {
+    if (reduceMotion || text === intro) {
+      return;
+    }
+    const timeout = window.setTimeout(() => setText(intro.slice(0, text.length + 1)), 36);
+    return () => window.clearTimeout(timeout);
+  }, [reduceMotion, text]);
+
+  return (
+    <motion.p
+      className="typingLine2"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4, duration: 0.45 }}
+      aria-label={intro}
+    >
+      <span aria-hidden="true">{displayedText}</span>
+      <span className={isComplete ? "caret caretDone" : "caret"} aria-hidden="true" />
+    </motion.p>
+  );
 }

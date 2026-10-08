@@ -654,7 +654,10 @@ export const skillCategories: Record<SkillType, SkillCategory> = {
     heading: "Backend",
     description: "Scalable systems, APIs and distributed architectures.",
     groups: backendGroups,
-    skills: backendGroups.flatMap((group) => group.skills),
+    skills: [{ name: "Node.js", detail: "" }, { name: "Typescript", detail: "" },
+    { name: "Kafka", detail: "" }, { name: "Redis", detail: "" },
+    {name:"PostgresSQL",detail:""},{name:"Graphql",detail:""},
+    ],
   },
 };
 
