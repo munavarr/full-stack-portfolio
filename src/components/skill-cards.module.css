@@ -1,0 +1,388 @@
+.section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 32px;
+}
+
+/* ================================
+   HEADING
+================================ */
+
+.heading {
+  margin-bottom: 36px;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 14px;
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: #888;
+}
+
+.heading h2 {
+  margin: 0;
+
+  font-size: clamp(38px, 5vw, 68px);
+  line-height: 0.95;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+
+  color: #111;
+}
+
+.heading h2 span {
+  color: #999;
+}
+
+/* ================================
+   CARDS
+================================ */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+
+  height: 420px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f4f4f1;
+  color: #111;
+
+  border: 1px solid #e3e3df;
+  border-radius: 22px;
+
+  cursor: pointer;
+ font-family: Helvetica, Arial, sans-serif;
+
+  transition:
+    background-color 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.9s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 1.1s ease;
+}
+
+.card:hover {
+  background: #090909;
+  color: #fff;
+
+  border-color: #090909;
+
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.14),
+    0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ================================
+   GLOW
+================================ */
+
+.cardGlow {
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  top: -130px;
+  right: -130px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  filter: blur(65px);
+
+  opacity: 0;
+
+  transform: scale(0.4);
+
+  transition:
+    opacity 1.2s ease,
+    transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .cardGlow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ================================
+   TITLE
+================================ */
+
+.title {
+  position: relative;
+  z-index: 3;
+
+  margin: 0;
+
+  font-size: clamp(52px, 6vw, 86px);
+  line-height: 0.85;
+
+  font-weight: 500;
+  letter-spacing: -0.065em;
+
+  text-transform: uppercase;
+
+  text-align: center;
+
+  transition:
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    font-size 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 1s ease;
+}
+
+/*
+   The title is centered initially.
+
+   On hover it moves upward to make
+   room for the content.
+*/
+
+.card:hover .title {
+  transform: translateY(-95px);
+
+  font-size: clamp(38px, 4vw, 58px);
+
+  letter-spacing: -0.045em;
+}
+
+/* ================================
+   HOVER CONTENT
+================================ */
+
+.hoverContent {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 80%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transform:
+    translate(-50%, 20px)
+    scale(0.96);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .hoverContent {
+  opacity: 1;
+
+  transform:
+    translate(-50%, 10px)
+    scale(1);
+}
+
+/* ================================
+   DESCRIPTION
+================================ */
+
+.description {
+  max-width: 280px;
+
+  margin: 0 0 20px;
+
+  font-size: 12px;
+  line-height: 1.55;
+
+  text-align: center;
+
+  color: #999;
+}
+
+/* ================================
+   SKILLS
+================================ */
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 7px;
+
+  max-width: 360px;
+
+  pointer-events: none;
+}
+
+.skill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 11px;
+
+  border: 1px solid #333;
+  border-radius: 100px;
+
+  font-size: 15px;
+  line-height: 1;
+
+  color: #ddd;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  opacity: 0;
+
+  filter: blur(5px);
+
+  transition:
+    color 0.7s ease,
+    border-color 0.7s ease,
+    background-color 0.7s ease;
+}
+
+/* Starting positions */
+
+.fromLeft {
+  transform:
+    translateX(-140px)
+    translateY(12px)
+    rotate(-4deg);
+}
+
+.fromRight {
+  transform:
+    translateX(140px)
+    translateY(-12px)
+    rotate(4deg);
+}
+
+/* Enter animation */
+
+.card:hover .skill {
+  opacity: 1;
+
+  filter: blur(0);
+
+  transform:
+    translateX(0)
+    translateY(0)
+    rotate(0);
+
+  transition-property:
+    transform,
+    opacity,
+    filter;
+
+  transition-duration:
+    750ms,
+    450ms,
+    600ms;
+
+  transition-timing-function:
+    cubic-bezier(0.16, 1, 0.3, 1),
+    ease,
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+  transition-delay:
+    var(--delay),
+    var(--delay),
+    var(--delay);
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 720px) {
+  .section {
+    padding: 64px 20px;
+  }
+
+  .heading {
+    margin-bottom: 28px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .card {
+    height: 360px;
+  }
+
+  .title {
+    font-size: clamp(48px, 14vw, 68px);
+  }
+
+  .card:hover .title {
+    transform: translateY(-80px);
+
+    font-size: clamp(36px, 10vw, 52px);
+  }
+
+  .hoverContent {
+    width: 88%;
+  }
+
+  .skills {
+    max-width: 300px;
+  }
+
+  .fromLeft {
+    transform: translateX(-100px);
+  }
+
+  .fromRight {
+    transform: translateX(100px);
+  }
+}
+
+/* ================================
+   REDUCED MOTION
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .title,
+  .hoverContent,
+  .skill,
+  .cardGlow {
+    transition: none !important;
+  }
+
+  .hoverContent {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .skill {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
