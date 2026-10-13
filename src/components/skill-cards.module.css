@@ -48,13 +48,13 @@
 .cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 66px;
 }
 
 .card {
   position: relative;
 
-  height: 420px;
+  height: 450px;
 
   overflow: hidden;
 
@@ -65,8 +65,8 @@
   background: #f4f4f1;
   color: #111;
 
-  border: 1px solid #e3e3df;
-  border-radius: 22px;
+  /* border: 1px solid #e3e3df; */
+  border-radius: 100px;
 
   cursor: pointer;
   font-family: var(--font-sans);

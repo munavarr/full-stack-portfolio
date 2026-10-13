@@ -5,9 +5,9 @@ import type { SkillItem } from "@/lib/skills";
 import styles from "./backend-skill-explorer.module.css";
 
 const LEFT_COLUMN_COUNT = 4;
-const MOVE_MS = 780;
-const CLOSE_MS = 720;
-const STAGGER_MS = 52;
+const MOVE_MS = 220;
+const CLOSE_MS = 280;
+const STAGGER_MS = 0;
 const FADE_MS = 280;
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -439,8 +439,8 @@ export default function BackendSkillExplorer({
   function beginMotion(nextName: string | null) {
     rememberPositions();
     runId.current += 1;
-    layoutSettled.current = false;
-    setDetailReady(false);
+    layoutSettled.current = nextName !== null;
+    setDetailReady(nextName !== null);
     setDetailLeaving(false);
     setActiveName(nextName);
     setMotionTick((tick) => tick + 1);
@@ -509,8 +509,6 @@ export default function BackendSkillExplorer({
       element?.getAnimations().forEach((animation) => animation.cancel());
     });
 
-    const animations: Animation[] = [];
-
     const duration = expanded ? MOVE_MS : CLOSE_MS;
 
     bubbleRefs.current.forEach((element, index) => {
@@ -524,8 +522,7 @@ export default function BackendSkillExplorer({
       const dx = previous.left - next.left;
       const dy = previous.top - next.top;
 
-      animations.push(
-        element.animate(
+      element.animate(
           [
             { transform: `translate3d(${dx}px, ${dy}px, 0)` },
             { transform: "translate3d(0, 0, 0)" },
@@ -536,8 +533,7 @@ export default function BackendSkillExplorer({
             delay,
             fill: "backwards",
           },
-        ),
-      );
+        );
     });
 
     const stage = stageRef.current;
@@ -554,25 +550,13 @@ export default function BackendSkillExplorer({
             { height: `${nextHeight}px`, minHeight: "0px" },
           ],
           {
-            duration: duration + (LEFT_COLUMN_COUNT - 1) * STAGGER_MS,
+            duration,
             easing: EASE,
             fill: "backwards",
           },
         );
       }
     }
-
-    if (!expanded) return;
-
-    const settleMs = animations.length
-      ? MOVE_MS + (LEFT_COLUMN_COUNT - 1) * STAGGER_MS + 40
-      : 0;
-
-    window.setTimeout(() => {
-      if (runId.current !== id) return;
-      layoutSettled.current = true;
-      setDetailReady(true);
-    }, settleMs);
   }, [expanded, motionTick]);
 
   useEffect(() => {
@@ -614,7 +598,7 @@ export default function BackendSkillExplorer({
             <div key={active.name} className={detailLeaving ? styles.explainLeave : styles.explainCopy}>
               <>
                 <p className={styles.explainLabel}>In practice</p>
-                <h3 className={styles.explainTitle}>{active.name}</h3>
+                {/* <h3 className={styles.explainTitle}>{active.name}</h3> */}
                 <SkillDetail detail={active.detail} />
                 {active.name === "PostgreSQL" ? <PostgresDiagram /> : null}
                 {active.name === "Node.js" ? <NodeDiagram /> : null}
